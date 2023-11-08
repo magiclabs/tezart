@@ -1,4 +1,5 @@
 import 'package:pinenacl/x25519.dart';
+import 'package:pinenacl/ed25519.dart';
 import 'package:tezart/src/crypto/crypto.dart' as crypto hide Prefixes;
 import 'package:tezart/src/crypto/crypto.dart' show Prefixes;
 
@@ -21,7 +22,7 @@ String encryptedSecretKeyToSeed({
   );
 
   final secretbox = SecretBox(encryptionKey);
-  final decryptedBytes = secretbox.decrypt(ByteList.fromList(secretKeyBytes), nonce: nonce);
+  final decryptedBytes = secretbox.decrypt(SignedMessage.fromList(signedMessage: secretKeyBytes), nonce: nonce);
 
   final seed = crypto.encodeWithPrefix(
     prefix: Prefixes.edsk2,

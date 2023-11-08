@@ -74,7 +74,7 @@ class Signature extends Equatable {
         /// extract the signature out and return
         String signedBytesHex = res.sbytes.replaceAll(res.bytes, '');
         final signedBytesInList = hex.decode(signedBytesHex);
-        final signed = ByteList.fromList(Uint8List.fromList(signedBytesInList));
+        final signed = SignedMessage.fromList(signedMessage: Uint8List.fromList(signedBytesInList));
         return signed;
       }
 
